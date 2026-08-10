@@ -2,7 +2,6 @@ export const site = {
   name: 'Portal Page',
   url: import.meta.env.PUBLIC_SITE_URL || 'https://portalpage.example',
   email: import.meta.env.PUBLIC_CONTACT_EMAIL || '',
-  formEndpoint: import.meta.env.PUBLIC_FORM_ENDPOINT || '',
   social: {
     linkedin: import.meta.env.PUBLIC_LINKEDIN_URL || '',
     github: import.meta.env.PUBLIC_GITHUB_URL || ''
