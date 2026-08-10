@@ -1,0 +1,37 @@
+---
+import Logo from './Logo.astro';
+import { nav } from '@/data/site';
+---
+<header class="site-header">
+  <div class="header-inner">
+    <Logo />
+    <nav class="desktop-nav" aria-label="Primary navigation">
+      {nav.map((item) => (
+        <details class="nav-group">
+          <summary>{item.label}</summary>
+          <div class="nav-panel">
+            <p class="nav-kicker">{item.label}</p>
+            <a class="nav-title" href={item.href}>Explore {item.label.toLowerCase()} <span aria-hidden="true">↗</span></a>
+            <div class="nav-links">{item.links.map(([label, href]) => <a href={href}>{label}</a>)}</div>
+          </div>
+        </details>
+      ))}
+    </nav>
+    <a class="button button-small header-cta" href="/contact/?path=build">Build a Portal</a>
+    <button class="menu-button" type="button" data-menu-button aria-controls="mobile-menu" aria-expanded="false">
+      <span>Menu</span><i aria-hidden="true"></i>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobile-menu" data-mobile-menu hidden>
+    <div class="mobile-menu-head"><Logo /><button type="button" data-menu-close aria-label="Close menu">Close ×</button></div>
+    <nav aria-label="Mobile navigation">
+      {nav.map((item) => (
+        <section>
+          <a class="mobile-parent" href={item.href}>{item.label}</a>
+          <div>{item.links.slice(1).map(([label, href]) => <a href={href}>{label}</a>)}</div>
+        </section>
+      ))}
+      <a class="button" href="/contact/?path=build">Build a Portal</a>
+    </nav>
+  </div>
+</header>

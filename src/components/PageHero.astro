@@ -1,0 +1,16 @@
+---
+interface Props { eyebrow?: string; title: string; intro: string; tone?: 'paper' | 'ink' | 'blue' | 'lime'; }
+const { eyebrow, title, intro, tone = 'paper' } = Astro.props;
+---
+<header class:list={['page-hero', `tone-${tone}`]}>
+  <div class="page-hero-copy">
+    {eyebrow && <p class="eyebrow">{eyebrow}</p>}
+    <h1>{title}</h1>
+    <p class="lede">{intro}</p>
+    <slot />
+  </div>
+  <div class="portal-glyph" aria-hidden="true">
+    <span class="door door-a"></span><span class="door door-b"></span><span class="door door-c"></span>
+    <i class="person person-a"></i><i class="person person-b"></i><i class="person person-c"></i>
+  </div>
+</header>

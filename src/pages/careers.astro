@@ -1,0 +1,10 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro'; import PageHero from '@/components/PageHero.astro'; import Breadcrumbs from '@/components/Breadcrumbs.astro'; import CTASection from '@/components/CTASection.astro';
+---
+<BaseLayout title="Careers" description="Careers at Portal Page: help build privacy-first digital infrastructure for real communities.">
+  <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'About', href: '/about/' }, { label: 'Careers' }]} />
+  <PageHero eyebrow="Careers" title="Build technology that remembers who it is for." intro="Portal Page intends to create a thoughtful, multidisciplinary company around privacy-first community infrastructure." tone="blue" />
+  <section class="content-section"><h2>The company we intend to build.</h2><div class="content-prose"><p>Community infrastructure sits at the intersection of engineering, design, privacy, security, accessibility, governance and human relationships. The work needs people who can go deep in their craft while recognising that the product's consequences cross disciplinary lines.</p><p>Portal Page should value clear thinking over theatre, careful evidence over inflated claims and sustainable practice over manufactured urgency. It should include the people affected by design decisions, make disagreement useful and leave room for professional judgement.</p><p>When roles are advertised, each listing should explain the work, decision scope, location or remote expectations, employment basis and hiring process. Compensation and accessibility information should be included wherever possible.</p></div></section>
+  <section class="section-shell"><div class="empty-state"><div><p class="eyebrow">Open positions</p><h2>No roles are currently advertised.</h2><p>We will not publish speculative vacancies. Confirmed roles will appear here with clear details.</p></div></div></section>
+  <CTASection title="For now, follow the work." text="Read the principles that would shape a role at Portal Page." />
+</BaseLayout>

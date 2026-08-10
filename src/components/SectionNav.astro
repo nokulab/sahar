@@ -1,0 +1,4 @@
+---
+const { items } = Astro.props;
+---
+<nav class="section-nav" aria-label="On this page"><span>On this page</span>{items.map((item: { id: string; label: string }) => <a href={`#${item.id}`}>{item.label}</a>)}</nav>

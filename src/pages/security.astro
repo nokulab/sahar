@@ -1,0 +1,68 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import PageHero from '@/components/PageHero.astro';
+import Breadcrumbs from '@/components/Breadcrumbs.astro';
+import CTASection from '@/components/CTASection.astro';
+
+const practices = [
+  ['Secure software development', 'Portal Page’s security architecture is designed around reviewed change, controlled environments, appropriate testing and the treatment of security as part of delivery rather than a final gate. The actual lifecycle, evidence and responsibilities need to be documented for customer assurance.'],
+  ['Identity and access', 'Authentication, administrative roles, least privilege and account lifecycle are intended to protect the community boundary. Specific authentication options and identity integrations must be confirmed for the implemented service.'],
+  ['Dependency management', 'Third-party software should be inventoried, monitored and updated according to risk. A production program should define vulnerability triage, remediation expectations and exception handling.'],
+  ['Logging and monitoring', 'Security-relevant activity should be logged to support detection and investigation while avoiding unnecessary behavioural collection. Access, retention and alerting need documented operational rules.'],
+  ['Backups and resilience', 'Backups should follow recovery needs, be protected against inappropriate access and be tested. No recovery objective or availability figure is claimed on this site because none has been supplied for verification.'],
+  ['Incident management', 'A response plan should define assessment, containment, recovery, learning and appropriate customer communication. Notification obligations depend on the incident, agreements and applicable law.'],
+  ['Vulnerability management', 'Reports and discovered weaknesses need a responsible intake, severity assessment and remediation path. A public reporting channel should be published once the operational process and contact are established.'],
+  ['Encryption principles', 'Portal Page’s security design should protect information in transit and at rest using appropriate contemporary controls. Exact protocols, key management and coverage must be verified in technical documentation before they are claimed.'],
+  ['Retention and disposal', 'Reducing unnecessary information reduces exposure. Retention schedules, deletion workflows, backups and legally required holds need to work as one lifecycle rather than separate promises.'],
+  ['Administrator security', 'Powerful access should be limited, reviewed and protected. Customers also need clear guidance for account provisioning, role changes, departures and recovery.'],
+  ['Vendor management', 'Infrastructure and service suppliers should be assessed according to the information and functions entrusted to them. Contracts, access, change and exit all belong in that assessment.'],
+  ['Continuous assurance', 'Automated checks, human review, testing and independent assurance can contribute different forms of evidence. Any future certification or assessment should be stated with precise scope and currency.']
+];
+---
+<BaseLayout title="Security" description="Portal Page's intended security approach: secure development, access control, vulnerability management, incident readiness and honest assurance without unverified badges.">
+  <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Security' }]} />
+  <PageHero eyebrow="Security" title="Security without theatre." intro="Trust cannot be reduced to a row of logos. Portal Page treats security as ongoing risk management—and distinguishes intended architecture from verified assurance." tone="ink" />
+  <div class="legal-notice">No security certification, accreditation, assessment result or maturity level is claimed on this page.</div>
+  <section class="content-section">
+    <h2>An honest starting point.</h2>
+    <div class="content-prose">
+      <p>Private community infrastructure may hold identity information, conversations, documents and administrative records. Protecting that information requires more than a secure-looking website. It requires engineering discipline, operational ownership, capable people and evidence that matches the customer's risk.</p>
+      <p>Portal Page's security architecture is designed around defence in depth, least privilege, purposeful collection, responsible software development and preparedness for things to go wrong. Those are design commitments. They are not a substitute for specific technical documentation, testing or contractual terms.</p>
+      <p>This page deliberately avoids claims about ISO certification, SOC 2, Essential Eight maturity, IRAP assessment, ASD accreditation, hosting location, uptime or encryption implementation because verified facts have not been supplied. Before a production procurement, Portal Page should provide current evidence appropriate to the service and the customer's requirements.</p>
+      <aside class="callout"><strong>Security without theatre</strong>A badge can be useful evidence within its scope and date. It is not proof that every product decision, administrator action or customer configuration is safe. Security is the continuing work around the badge.</aside>
+    </div>
+  </section>
+  <section class="section-shell">
+    <div class="section-heading"><p class="eyebrow">Intended practice areas</p><h2>Twelve parts of a living security program.</h2></div>
+    <div class="feature-rail">{practices.map(([title, text], i) => <div class="feature-row"><span class="num">{String(i + 1).padStart(2, '0')}</span><h3>{title}</h3><p>{text}</p></div>)}</div>
+  </section>
+  <section class="content-section">
+    <h2>Security is shared.</h2>
+    <div class="content-prose">
+      <p>Portal Page is responsible for the security of the service it provides. The customer organisation remains responsible for its authorised users, configuration choices, community policies, lawful instructions and connected systems. Members also need usable account protections and a clear way to report a concern.</p>
+      <p>Shared responsibility should not be a way for a provider to avoid accountability. It should be a practical map: who provisions administrators, who reviews access, who handles a member report, who assesses an integration, who contacts whom during an incident and which evidence each party maintains.</p>
+      <h3>Government and regulated organisations</h3>
+      <p>Government buyers may need assessment against agency policy, protective security, information classification, records obligations, privacy requirements, accessibility standards and procurement rules. Portal Page should work through the applicable questions with the buyer and provide evidence. It should not imply that suitability for one context proves suitability for another.</p>
+      <h3>Customer questions worth asking</h3>
+      <ul>
+        <li>What information will the community hold, and how sensitive is it?</li>
+        <li>Where are the service boundaries and third-party dependencies?</li>
+        <li>How are privileged roles granted, reviewed and removed?</li>
+        <li>What security events are logged, and who responds?</li>
+        <li>How are vulnerabilities found, prioritised and remediated?</li>
+        <li>What are the tested backup, recovery and continuity arrangements?</li>
+        <li>How will Portal Page communicate an incident or material change?</li>
+        <li>What happens to information and backups at service exit?</li>
+      </ul>
+    </div>
+  </section>
+  <section class="content-section">
+    <h2>Evidence should match the claim.</h2>
+    <div class="content-prose">
+      <p>A responsible assurance pack might include architecture and data-flow documentation, current penetration-test information, vulnerability-management processes, supplier details, recovery evidence, incident procedures, secure-development practices and independently assessed controls. What is appropriate depends on the procurement and risk.</p>
+      <p>Portal Page should date assurance material, state its scope and identify exceptions. When a certification or assessment is achieved, the public statement should describe exactly which entity, product or system is covered and for how long. Until then, it should remain absent—not represented through ambiguous icons or suggestive language.</p>
+      <p>Security questions can be raised through the <a href="/contact/?path=government">Government pathway</a>. A dedicated security contact should replace that route once the organisation has confirmed and configured one.</p>
+    </div>
+  </section>
+  <CTASection title="Make assurance a conversation, not a logo wall." text="Tell us about the community, information and assurance requirements that should shape the service." />
+</BaseLayout>

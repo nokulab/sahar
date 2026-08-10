@@ -1,0 +1,10 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro'; import PageHero from '@/components/PageHero.astro'; import Breadcrumbs from '@/components/Breadcrumbs.astro'; import CTASection from '@/components/CTASection.astro'; import { communities } from '@/data/communities';
+---
+<BaseLayout title="Communities" description="The future home of verified Portal Page community stories. No customer logos or case studies are fabricated.">
+  <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Communities' }]} />
+  <PageHero eyebrow="Communities" title="The places people will make their own." intro="This page is designed to showcase real Portal Page communities when customers approve publication. Until then, it remains deliberately honest." tone="ink" />
+  <section class="section-shell">{communities.length ? <div class="card-grid">{communities.filter(c => c.approved).map((community) => <article class="card"><p class="eyebrow">{community.sector}</p><h2>{community.name}</h2><p>{community.description}</p></article>)}</div> : <div class="empty-state"><div><p class="eyebrow">No published customer stories yet</p><h2>No logo wall without permission.</h2><p>Verified communities can be added from one structured data file, with approval status built into the content model.</p><div class="button-row" style="justify-content:center"><a class="button" href="/community-examples/">View illustrative scenarios</a></div></div></div>}</section>
+  <section class="content-section"><h2>What belongs here later.</h2><div class="content-prose"><p>A useful community story should explain the organisation's context, the people involved, the problem that prompted change, the agreed portal scope and what was learned. Outcomes should use evidence and methodology rather than inflated numbers.</p><p>Customer names, logos, quotations and metrics require explicit permission and a factual review. Sensitive community information should remain private even when the customer relationship is public.</p></div></section>
+  <CTASection />
+</BaseLayout>

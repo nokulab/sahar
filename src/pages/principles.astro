@@ -1,0 +1,106 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import PageHero from '@/components/PageHero.astro';
+import Breadcrumbs from '@/components/Breadcrumbs.astro';
+import SectionNav from '@/components/SectionNav.astro';
+import CTASection from '@/components/CTASection.astro';
+
+const principles = [
+  { id: 'your-data-is-yours', title: 'Your data is yours', paragraphs: [
+    'People and organisations create the information that gives a community its meaning: profiles, relationships, discussions, documents, decisions and shared memory. A software provider may need to process some of that information to deliver a service, but technical custody should not be confused with an unlimited claim over it.',
+    'Meaningful control begins with clear roles. The community operator needs to understand what it controls, what Portal Page processes on its behalf, what members contribute and which responsibilities cannot be transferred through a user interface. Those roles must ultimately be expressed in contracts and privacy documentation, not only in brand language.',
+    'Control also has practical dimensions. Administrators should be able to access the information needed to operate their community within legitimate permissions. Members should have understandable ways to review and correct relevant personal information. Organisations should be able to plan for useful export, retention and deletion rather than discovering the boundaries only when the relationship ends.',
+    'Ownership is not permission to ignore people. An organisation that operates a community is a steward of information contributed in context. It should use that information for stated community purposes, protect it appropriately and remain accountable for the policies it sets.'
+  ]},
+  { id: 'privacy-is-infrastructure', title: 'Privacy is infrastructure', paragraphs: [
+    'Privacy is often reduced to a policy page or a collection of switches. Those things matter, but they arrive late. By the time a setting is displayed, earlier decisions have already determined what data exists, where it moves, who can access it and which business incentives surround it.',
+    'Treating privacy as infrastructure means asking questions at the beginning. Does the service need this field? Can the purpose be met with less precise information? Is a private space genuinely separated from public indexing? Will a notification reveal sensitive context on a locked screen? Does an integration enlarge the data boundary without a proportional benefit?',
+    'It also means designing for understandable action. A person should not need specialist knowledge to find a privacy choice, leave an optional group or understand who can see a profile field. Administrators need equally clear explanations of the consequences of configuration choices.',
+    'No architecture removes every risk. Privacy by design is a continuing discipline: review purposes, challenge accumulation, monitor change and make room for the people affected to raise concerns.'
+  ]},
+  { id: 'no-surveillance-economy', title: 'No surveillance economy', paragraphs: [
+    'Portal Page should not depend on behavioural advertising, cross-site tracking or the construction of commercial profiles from private community activity. A neighbour discussing a building issue is not signalling an interest category. An employee joining a professional discussion is not offering material for an advertising audience. A person participating in a public-purpose community should not be followed into unrelated parts of the internet.',
+    'This position is as much about incentives as technology. Advertising models can reward collection, prediction and increased time spent. Portal Page intends to align revenue with the organisations buying the software. The organisation should be able to judge the service by whether it supports the community purpose, not whether it produces targetable attention.',
+    'Service operation may still require limited technical data for security, reliability and support. The standard should be purpose, proportionality and transparency—not a fiction that a digital service processes nothing at all. Operational data should not quietly become an advertising asset.'
+  ]},
+  { id: 'collect-less', title: 'Collect less', paragraphs: [
+    'The safest unnecessary data is the data that was never collected. This is a security principle, a privacy principle and often a usability principle. Every extra field creates another item to explain, secure, correct, retain and eventually delete.',
+    'Data minimisation starts by defining the task. If the community only needs to know that a member belongs to an eligible group, it may not need the underlying detail. If a broad region is sufficient, a precise location may be excessive. If an attribute is only “nice to have”, the organisation should be able to explain why it belongs in the service at all.',
+    'Collecting less does not mean collecting blindly. Some communities require information to operate safely, provide accessibility support or meet legitimate obligations. The point is to connect each item to a clear purpose, restrict its use and review whether the need continues.',
+    'Deletion deserves equal attention. A retention period should not become “forever” merely because storage is cheap. Organisations need policies for dormant accounts, departed members, old content, audit information and legal holds that reflect real responsibilities.'
+  ]},
+  { id: 'communities-need-boundaries', title: 'Communities need boundaries', paragraphs: [
+    'A community is not simply a public audience with a password. It is a set of relationships, expectations and responsibilities. Members need to know why the space exists, who belongs, which conduct is expected and who is accountable for decisions.',
+    'Boundaries can be technical: invitations, authentication, groups and permissions. They are also social: community standards, moderation practice, confidentiality expectations and the distinction between official and member-authored content. A strong portal makes both kinds visible.',
+    'Not every conversation belongs on the open internet. Privacy can make room for candid professional exchange, local problem-solving or participation by people who do not want their community identity indexed. But “private” should never be used as a vague promise. The actual audience, administrator access and service processing need to be explained.',
+    'Boundaries also protect focus. When a portal is designed for a defined purpose, it does not need to import the entire internet to remain relevant.'
+  ]},
+  { id: 'organisations-in-control', title: 'Organisations should remain in control', paragraphs: [
+    'The organisation operating a Portal Page community should retain meaningful control over its environment, within the law and agreed service terms. That includes its membership model, policies, information structure, administrator roles and moderation approach.',
+    'Control should not mean every administrator can do everything. Mature control is distributed through clear permissions, review and accountability. A communications lead may publish announcements without managing identity. A moderator may review reports without changing contractual settings. A local group coordinator may administer one space rather than the whole community.',
+    'Portal Page should provide understandable controls and documentation, while the organisation remains responsible for lawful instructions, fair community rules and the decisions its authorised people make. The relationship works best when those responsibilities are explicit.',
+    'Product changes can affect control too. Material changes to data practices, member experience or administrative capability should be communicated clearly enough for customers to assess their consequences.'
+  ]},
+  { id: 'portability-matters', title: 'Portability matters', paragraphs: [
+    'A community develops value over time. Its documents, discussions, structures and institutional memory should not become leverage for artificial lock-in. Technology should earn continued use through usefulness and trust, not through the cost of escape.',
+    'Portability requires more than a download button. An export needs useful formats, relationships and context. A collection of opaque identifiers may technically contain data while being practically unusable. The organisation also needs to know which information can be exported, which information must be handled differently and what happens to service copies after the relationship ends.',
+    'Interoperability does not mean making every private conversation available to every connected system. Connections should remain purpose-limited and permission-aware. The aim is an orderly path between systems, not uncontrolled circulation.',
+    'Portal Page treats portability as a product and contracting principle. Exact export capability must be confirmed in the implemented service and customer agreement.'
+  ]},
+  { id: 'transparency-earns-trust', title: 'Transparency earns trust', paragraphs: [
+    'Trust is not generated by saying “trust us”. It grows when actions are legible. Members should be able to understand who operates the community, why information is requested, which rules apply, how decisions are made and where to ask a question.',
+    'Policies should be written for the people affected, not only for specialists. Important changes should not be disguised inside a long document. Administrative interfaces should explain the consequences of consequential settings. Community content should identify its source and status.',
+    'Transparency also means acknowledging limits. This website does not claim certifications, customers, integrations or service characteristics that have not been established. Where Portal Page describes a goal or intended architecture, it says so. Credibility is strengthened by a clear boundary between current fact and future commitment.',
+    'Some information cannot be made public without creating security or privacy risk. Responsible transparency explains the principle and process without exposing controls that should remain confidential.'
+  ]},
+  { id: 'security-is-continuous', title: 'Security is continuous', paragraphs: [
+    'Security is not a badge placed in a footer. Certifications and independent assessments can provide useful evidence when they exist, but they do not replace daily engineering, access discipline, incident readiness or honest risk management.',
+    'Portal Page’s security architecture is intended to consider secure development, authentication, least privilege, dependency management, logging, backups, vulnerability handling, encryption principles, retention and vendor risk. The details and evidence must be verified for the actual service before a customer relies on them.',
+    'Security decisions should follow the sensitivity and purpose of the community. A public-interest working group, an employee community and a residential community may have different threat models and assurance requirements. Procurement should test the service against those needs rather than accepting generic language.',
+    'Security is also shared. Portal Page must protect the service; customer administrators must manage authorised access and policies; members need usable ways to protect accounts and report concerns. Blurred responsibility creates gaps.'
+  ]},
+  { id: 'strengthen-human-communities', title: 'Technology should strengthen human communities', paragraphs: [
+    'Software can make coordination easier, but it cannot manufacture belonging. Strong communities depend on purpose, reciprocity, capable stewardship and the work people do for one another. Portal Page should support that work without presenting technology as the hero of every story.',
+    'That means favouring useful connection over constant activity. A member who finds the right document in two minutes and leaves may have had an excellent experience. A quiet community with timely support may be healthier than a loud one generating thousands of reactions.',
+    'Product design can make space for context, considered responses and human judgement. It can avoid arbitrary streaks, artificial scarcity and interruptions designed only to pull people back. It can help organisers recognise who needs support without treating people as engagement scores.',
+    'The portal should fit into real community life. Sometimes the right outcome is an in-person meeting, a phone call, an accessible alternative channel or no digital interaction at all.'
+  ]},
+  { id: 'no-dark-patterns', title: 'No dark patterns', paragraphs: [
+    'A dark pattern is an interface that steers people towards a choice they might not freely make if the alternatives were equally clear. Privacy and community participation are especially vulnerable to this kind of design because people often feel they must accept the conditions to remain connected.',
+    'Joining, consenting, choosing notifications and leaving should use direct language and balanced choices. A button to decline should not be hidden in low-contrast text. Optional profile details should not masquerade as mandatory. The consequences of deleting an account should be explained without creating needless obstruction.',
+    'Administrators deserve the same respect. Configuration interfaces should not default to broader collection or visibility merely because it benefits a vendor. Important consequences should appear at the decision point, not after the fact in documentation.',
+    'Good design does not eliminate persuasion; it makes the organisation’s purpose clear while preserving meaningful agency.'
+  ]},
+  { id: 'people-before-metrics', title: 'People before metrics', paragraphs: [
+    'Metrics can help an organisation understand whether information is reaching people or where a service is confusing. They become dangerous when the measure replaces the purpose. Time spent, impressions and raw activity are not universal signs of community health.',
+    'Portal Page should encourage organisations to begin with outcomes: could members find the answer, understand the decision, take part in the event, connect with the right person or receive support? Measurement should be proportionate to those questions and designed with privacy in mind.',
+    'This principle argues against surveillance disguised as optimisation. Detailed behavioural trails should not be collected simply because analytics tools make them available. If aggregate information is sufficient, individual tracking is unnecessary. If a measure has no responsible owner or decision attached to it, it may not need to exist.',
+    'People can surprise a metric. Qualitative feedback, accessibility research, moderator experience and community judgement remain essential. The aim is not the most measurable community. It is a community that works.'
+  ]}
+];
+---
+<BaseLayout title="Principles" description="The Portal Page manifesto: twelve principles for privacy-first, organisation-owned digital communities built without behavioural surveillance.">
+  <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Principles' }]} />
+  <PageHero eyebrow="The Portal Page manifesto" title="Communities are not datasets." intro="Technology should help people belong, organise and participate without converting community life into behavioural inventory." tone="blue">
+    <div class="button-row"><a class="button button-light" href="#your-data-is-yours">Read the principles</a><a class="text-link text-link-light" href="/data-ownership/">Explore data ownership →</a></div>
+  </PageHero>
+  <section class="content-section">
+    <h2>Why Portal Page exists.</h2>
+    <div class="content-prose">
+      <p>The internet gave people unprecedented ways to find one another. It also concentrated much of community life inside platforms designed to observe, predict and sell access to attention.</p>
+      <p>That bargain has become so familiar that it can seem inevitable: gather on a free platform, accept the feed, tolerate the advertising, allow participation to become a profile. Yet the communities using those services already create the value. Neighbours contribute local knowledge. Employees help colleagues. Members share professional experience. Volunteers organise effort. Public-purpose groups bring lived experience to difficult questions.</p>
+      <p>Portal Page starts from a different premise. Organisations should be able to provide a digital place for their communities directly. The commercial relationship should be clear: organisations pay for software rather than personal information paying for it.</p>
+      <p>A different revenue model is necessary, but not sufficient. Privacy must shape product architecture. Data should be collected for stated purposes and kept no longer than needed. Roles and boundaries should be understandable. Portability should be planned. Security should be continuous. Interfaces should respect agency. Success should be measured against community purpose rather than compulsive attention.</p>
+      <p>These principles describe the direction Portal Page intends to follow. They are a public standard against which the product, operating practices and agreements should be tested. Where the precise capability or legal commitment has not yet been established, the principle is not presented as proof that it has.</p>
+    </div>
+  </section>
+  <SectionNav items={principles.map((p, i) => ({ id: p.id, label: `${String(i + 1).padStart(2, '0')} ${p.title}` }))} />
+  <div class="section-shell numbered-principles">
+    {principles.map((principle) => <section class="principle" id={principle.id}><div><h2>{principle.title}</h2>{principle.paragraphs.map((paragraph) => <p>{paragraph}</p>)}</div></section>)}
+    <section class="manifesto-end">
+      <p>A private place for public purpose. A useful place for everyday belonging. A community platform that remembers who it is for.</p>
+      <p style="font-family:var(--sans);font-size:1.1rem;line-height:1.6;max-width:43rem">Portal Page is not trying to build another social network. We are building the private digital places where real communities can belong.</p>
+    </section>
+  </div>
+  <CTASection title="Build on principles you can explain." text="Tell us what your community needs, which responsibilities matter and what trust should look like in practice." />
+</BaseLayout>

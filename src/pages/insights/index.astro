@@ -1,0 +1,34 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import PageHero from '@/components/PageHero.astro';
+import Breadcrumbs from '@/components/Breadcrumbs.astro';
+import CTASection from '@/components/CTASection.astro';
+const articles = (await getCollection('insights', ({ data }) => !data.draft)).sort((a,b) => b.data.publishedDate.valueOf() - a.data.publishedDate.valueOf());
+const categories = [...new Set(articles.map(a => a.data.category))].sort();
+---
+<BaseLayout title="Insights" description="Original Portal Page articles about community portals, privacy, data ownership, governance, government, accessibility and digital community design.">
+  <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Insights' }]} />
+  <PageHero eyebrow="Insights" title="Ideas for communities with real responsibilities." intro="Practical, principled writing for people choosing, designing and governing private digital community infrastructure." tone="paper" />
+  <section class="section-shell">
+    <div class="pill-list" aria-label="Filter articles by category"><button class="pill" type="button" data-filter="all" aria-pressed="true">All</button>{categories.map(c => <button class="pill" type="button" data-filter={c} aria-pressed="false">{c}</button>)}</div>
+    <p class="form-note" data-filter-status aria-live="polite">Showing all {articles.length} articles. Every article remains present in the initial HTML.</p>
+    <div class="card-grid" style="margin-top:3rem">{articles.map((article) => <a class="card" data-article data-category={article.data.category} href={`/insights/${article.id}/`}><p class="eyebrow">{article.data.category}</p><h2>{article.data.title}</h2><p>{article.data.description}</p><div class="card-meta"><span>{article.data.publishedDate.toLocaleDateString('en-AU', { dateStyle: 'medium' })}</span><span>{Math.max(4, Math.round((article.body ?? '').split(/\s+/).length / 220))} min read</span></div></a>)}</div>
+  </section><CTASection title="Build the place behind the thinking." />
+  <script is:inline>
+    const filterButtons = [...document.querySelectorAll('[data-filter]')];
+    const articleCards = [...document.querySelectorAll('[data-article]')];
+    const filterStatus = document.querySelector('[data-filter-status]');
+    filterButtons.forEach((button) => button.addEventListener('click', () => {
+      const category = button.getAttribute('data-filter');
+      filterButtons.forEach(item => item.setAttribute('aria-pressed', String(item === button)));
+      let visible = 0;
+      articleCards.forEach(card => {
+        const show = category === 'all' || card.getAttribute('data-category') === category;
+        card.toggleAttribute('hidden', !show);
+        if (show) visible += 1;
+      });
+      if (filterStatus) filterStatus.textContent = category === 'all' ? `Showing all ${visible} articles.` : `Showing ${visible} ${category} article${visible === 1 ? '' : 's'}.`;
+    }));
+  </script>
+</BaseLayout>

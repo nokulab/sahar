@@ -1,0 +1,14 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import PageHero from './PageHero.astro';
+import Breadcrumbs from './Breadcrumbs.astro';
+import { site } from '@/data/site';
+const { doc } = Astro.props;
+---
+<BaseLayout title={`${doc.title} — draft`} description={doc.description} noindex={true}>
+  <div class="legal-notice">Draft for professional legal review. Not legal advice and not approved for production use.</div>
+  <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: doc.title }]} />
+  <PageHero eyebrow="Draft legal document" title={doc.title} intro={doc.description} tone="paper" />
+  <section class="content-section"><h2>Document status</h2><div class="content-prose"><p><strong>Version:</strong> Working draft, 10 August 2026</p><p>This document was generated as a responsible starting structure for Portal Page. It requires review by qualified Australian legal and privacy professionals, alignment with the actual product architecture and customer agreements, and approval by the company before publication.</p>{!site.email && <p><strong>Contact placeholder:</strong> A public legal or privacy contact has not been configured. Add it in the central site configuration before launch.</p>}</div></section>
+  {doc.sections.map((section: { title: string; paragraphs: string[]; bullets?: string[] }) => <section class="content-section"><h2>{section.title}</h2><div class="content-prose">{section.paragraphs.map((p) => <p>{p}</p>)}{section.bullets && <ul>{section.bullets.map((b) => <li>{b}</li>)}</ul>}</div></section>)}
+</BaseLayout>

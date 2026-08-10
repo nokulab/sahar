@@ -1,0 +1,24 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro'; import PageHero from '@/components/PageHero.astro'; import Breadcrumbs from '@/components/Breadcrumbs.astro'; import { site } from '@/data/site';
+const configured = Boolean(site.formEndpoint);
+---
+<BaseLayout title="Contact" description="Talk to Portal Page about building a private community portal for your organisation, government program, partnership or project.">
+  <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Contact' }]} />
+  <PageHero eyebrow="Contact" title="Tell us about the community." intro="Who needs a better place to communicate? What is scattered today? Which responsibilities and boundaries matter most?" tone="lime" />
+  <section class="contact-layout">
+    <aside><p class="eyebrow">Choose a pathway</p><div class="contact-paths"><a href="#contact-form">Build a Portal ↘</a><a href="#contact-form">Government ↘</a><a href="#contact-form">Partnerships ↘</a><a href="#contact-form">General enquiries ↘</a></div>{site.email ? <p>Prefer email?<br /><a href={`mailto:${site.email}`}>{site.email}</a></p> : <p class="form-note">A public contact email has not yet been configured.</p>}</aside>
+    <div>
+      {!configured && <div class="legal-notice" style="margin-bottom:2rem">Form endpoint not yet configured. The site owner must connect it before launch.</div>}
+      <form class="contact-form" id="contact-form" action={configured ? site.formEndpoint : undefined} method="post">
+        <div class="field"><label for="name">Name</label><input id="name" name="name" autocomplete="name" required /></div>
+        <div class="field"><label for="email">Work email</label><input id="email" name="email" type="email" autocomplete="email" required /></div>
+        <div class="field"><label for="organisation">Organisation</label><input id="organisation" name="organisation" autocomplete="organization" /></div>
+        <div class="field"><label for="path">What would you like to discuss?</label><select id="path" name="path" required><option value="">Select one</option><option>Build a Portal</option><option>Government</option><option>Partnerships</option><option>General enquiry</option></select></div>
+        <div class="field"><label for="message">Tell us about the community</label><textarea id="message" name="message" required></textarea></div>
+        <label style="display:flex;align-items:start;gap:.6rem"><input type="checkbox" name="privacy_acknowledgement" required style="margin-top:.35rem" /> <span>I understand the information in this form will be used to respond to my enquiry. Read the <a href="/privacy/">draft privacy notice</a>.</span></label>
+        <button class="button" type="submit" disabled={!configured}>Send enquiry</button>
+        <p class="form-note">Do not include sensitive personal information. This static site adds no tracking scripts. The connected form provider must be assessed and documented before launch.</p>
+      </form>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,8 @@
+---
+import { getCollection } from 'astro:content'; import BaseLayout from '@/layouts/BaseLayout.astro'; import PageHero from '@/components/PageHero.astro'; import Breadcrumbs from '@/components/Breadcrumbs.astro'; import CTASection from '@/components/CTASection.astro';
+const resources = (await getCollection('resources', ({data}) => !data.draft)).sort((a,b)=>a.data.title.localeCompare(b.data.title));
+---
+<BaseLayout title="Community portal guides" description="Practical Portal Page guides to community portals, privacy-first platforms, government communities, governance, migration and data ownership.">
+  <Breadcrumbs items={[{label:'Home',href:'/'},{label:'Resources'}]} /><PageHero eyebrow="Guides and resources" title="Make the next decision a better one." intro="Detailed guides for organisations planning, choosing, migrating and governing a private digital community." tone="lime" />
+  <section class="section-shell"><div class="card-grid">{resources.map(item => <a class="card" href={`/resources/${item.id}/`}><p class="eyebrow">{item.data.category}</p><h2>{item.data.title}</h2><p>{item.data.description}</p><div class="card-meta"><span>{Math.max(4,Math.round((item.body ?? '').split(/\s+/).length/220))} min read</span></div></a>)}</div></section><CTASection />
+</BaseLayout>

@@ -1,0 +1,123 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import CTASection from '@/components/CTASection.astro';
+
+const insights = (await getCollection('insights', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.publishedDate.valueOf() - a.data.publishedDate.valueOf())
+  .slice(0, 3);
+
+const capabilities = [
+  ['01', 'Communication', 'Create a dependable place for organisation updates and community participation, with a clear distinction between the two.', '/platform/community-communication/'],
+  ['02', 'Knowledge', 'Bring documents, guides, announcements and discussions into a structure that members can navigate and search.', '/platform/documents/'],
+  ['03', 'Participation', 'Support discussion, events, groups and member connection inside boundaries the community can understand.', '/platform/discussions/'],
+  ['04', 'Administration', 'Use roles, permissions, moderation and governance to reflect how responsibility works in the real organisation.', '/platform/roles-and-permissions/'],
+  ['05', 'Support', 'Give members a clear path to practical help, useful answers and the people responsible for responding.', '/platform/community-support/'],
+  ['06', 'Portability', 'Plan for useful exports and responsible exits so technology does not deliberately trap the community.', '/data-ownership/']
+];
+
+const communityTypes = [
+  ['Government', '/solutions/government/'], ['Local government', '/solutions/local-government/'], ['Business', '/solutions/business/'],
+  ['Property & strata', '/solutions/property-and-strata/'], ['Associations', '/solutions/associations/'], ['Education', '/solutions/education/']
+];
+---
+<BaseLayout title="Portal Page" description="Private digital community portals for organisations. Your community. Your platform. Your data.">
+  <section class="home-hero">
+    <div class="hero-orbit" aria-hidden="true"></div>
+    <div class="home-hero-inner">
+      <p class="eyebrow">Privacy-first digital community infrastructure</p>
+      <h1><span>Your community.</span><span>Your platform.</span><span>Your data.</span></h1>
+      <div class="home-intro">
+        <div class="button-row"><a class="button" href="/platform/">Explore the platform</a><a class="button button-outline" href="/contact/?path=build">Build your community</a></div>
+        <p>Portal Page creates private digital spaces where organisations and their communities can communicate, share information and belong—without turning community participation into an advertising profile.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="problem-section">
+    <div class="section-shell problem-grid">
+      <div>
+        <p class="eyebrow">The problem</p>
+        <h2>Our communities are scattered.</h2>
+        <p class="lede">One announcement lives in an inbox. The useful answer is buried in a chat. The current document is somewhere else. The conversation is taking place on a platform designed for advertising.</p>
+        <p>Organisations have accumulated channels one problem at a time. Email distributes, but it does not create shared knowledge. Messaging is immediate, but important context disappears quickly. Websites publish outward, but seldom provide a place for a defined group to participate. Social platforms can gather people, but the organisation does not control the environment, the business model or the member experience.</p>
+        <p>The result is not simply inconvenience. Fragmentation makes it harder to understand what is official, who is responsible, which version is current and where a community member can ask for help. It also spreads identity and activity across systems with different privacy practices.</p>
+      </div>
+      <div class="scatter-list" aria-label="Fragmented community channels"><span>Email</span><span>Social feeds</span><span>Group chats</span><span>Websites</span><span>Shared drives</span><span>Ticket systems</span></div>
+    </div>
+  </section>
+
+  <section class="section-shell">
+    <div class="section-heading"><p class="eyebrow">One recognisable place</p><h2>A digital home with a front door.</h2></div>
+    <div class="content-section" style="padding-inline:0">
+      <h2>Built around belonging.</h2>
+      <div class="content-prose">
+        <p>A community portal is more than a bundle of features behind a login. It is a dedicated environment with a purpose, membership, boundaries and an accountable operator.</p>
+        <p>Portal Page is intended to bring together communication, knowledge and participation without pretending every community needs the same configuration. A government advisory group may need carefully defined roles and information-management decisions. A residential building may need moving guides, notices and a useful route for common questions. An association may need chapter spaces, events and professional exchange.</p>
+        <p>What they share is the need for a stable place that feels like theirs—not a borrowed corner of an advertising network. The organisation operates the community. Members know where they are. The relationship is direct.</p>
+        <div class="callout"><strong>Community technology should serve the community.</strong>The measure of a useful portal is not how long it can keep somebody scrolling. It is whether people can find what matters, take part on reasonable terms and leave with their dignity and choices intact.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-shell" id="capabilities">
+    <div class="section-heading"><p class="eyebrow">What communities can do</p><h2>The essential parts, made coherent.</h2></div>
+    <div class="feature-rail">
+      {capabilities.map(([num, title, text, href]) => <a class="feature-row" href={href} style="text-decoration:none"><span class="num">{num}</span><h3>{title}</h3><p>{text} <strong>Explore →</strong></p></a>)}
+    </div>
+  </section>
+
+  <section class="statement">
+    <p class="eyebrow">The principle at the centre</p>
+    <h2>Communities are not datasets.</h2>
+    <p>Participation should not become behavioural surveillance. A discussion between neighbours, colleagues or public-purpose partners should not be converted into an advertising profile.</p>
+    <div class="button-row" style="justify-content:center"><a class="button button-light" href="/principles/">Read the Portal Page principles</a></div>
+  </section>
+
+  <section class="section-shell">
+    <div class="section-heading"><p class="eyebrow">A different commercial alignment</p><h2>Software paid for with money—not personal information.</h2></div>
+    <div class="content-section" style="padding-inline:0">
+      <h2>The relationship should be simple.</h2>
+      <div class="content-prose">
+        <p>Portal Page's intended model is straightforward: organisations pay for the software. Community conversations should not be monetised through behavioural advertising, data brokerage or cross-site profiles.</p>
+        <p>This matters because a business model shapes product decisions. When revenue depends on attention and targeting, the platform is rewarded for collecting more, keeping people engaged for longer and learning more about them. When the organisation is the customer, the product can be judged against the organisation's purpose and the community's trust.</p>
+        <p>That does not eliminate difficult privacy decisions. Organisations still need to decide what member information is necessary, how it should be governed, when it should be removed and which service providers are involved. Portal Page's role is to make those conversations explicit and design towards data minimisation, transparency, organisational control and portability.</p>
+        <p>Exact rights and responsibilities must ultimately be set out in customer agreements, privacy notices and the implemented service—not left to marketing language. That is why our <a href="/data-ownership/">data ownership page</a> distinguishes principles from contractual commitments.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="community-types">
+    <div class="section-shell">
+      <div class="section-heading"><p class="eyebrow">Different communities</p><h2>Purpose changes the shape of the place.</h2></div>
+      <div class="type-grid">{communityTypes.map(([label, href]) => <a href={href}><strong>{label}</strong><span aria-hidden="true">↗</span></a>)}</div>
+    </div>
+  </section>
+
+  <section class="section-shell">
+    <div class="section-heading"><p class="eyebrow">Community architecture</p><h2>People, permissions and purpose—inside one boundary.</h2></div>
+    <div class="architecture" role="img" aria-label="Diagram showing administrators, members, groups, content and services within a community boundary">
+      <div class="boundary"></div><div class="core">Your<br />community</div><span class="node">Administrators</span><span class="node">Members</span><span class="node">Groups</span><span class="node">Content</span><span class="node">Services</span>
+      <p class="architecture-note">The diagram is conceptual. Final information flows, roles and service integrations would be confirmed for each implementation.</p>
+    </div>
+  </section>
+
+  <section class="section-shell">
+    <div class="section-heading"><p class="eyebrow">Six working principles</p><h2>Boundaries create the conditions for trust.</h2></div>
+    <div class="card-grid">
+      <a class="card" href="/principles/#your-data-is-yours"><p class="eyebrow">01</p><h3>Your data is yours</h3><p>Meaningful control, clear stewardship and planned portability.</p></a>
+      <a class="card" href="/principles/#privacy-is-infrastructure"><p class="eyebrow">02</p><h3>Privacy is infrastructure</h3><p>Architecture and business models matter more than a hidden toggle.</p></a>
+      <a class="card" href="/principles/#collect-less"><p class="eyebrow">03</p><h3>Collect less</h3><p>Unnecessary data that is never collected cannot be leaked or misused.</p></a>
+      <a class="card" href="/principles/#communities-need-boundaries"><p class="eyebrow">04</p><h3>Communities need boundaries</h3><p>Membership, roles and expectations make a private space legible.</p></a>
+      <a class="card" href="/principles/#no-dark-patterns"><p class="eyebrow">05</p><h3>No dark patterns</h3><p>Consent, notifications and leaving should be understandable.</p></a>
+      <a class="card" href="/principles/#people-before-metrics"><p class="eyebrow">06</p><h3>People before metrics</h3><p>Healthy participation is not the same thing as maximum engagement.</p></a>
+    </div>
+  </section>
+
+  <section class="section-shell related">
+    <div class="section-heading"><p class="eyebrow">Recent thinking</p><h2>Useful ideas for people building real communities.</h2></div>
+    <div class="card-grid">{insights.map((entry) => <a class="card" href={`/insights/${entry.id}/`}><p class="eyebrow">{entry.data.category}</p><h3>{entry.data.title}</h3><p>{entry.data.description}</p><div class="card-meta"><span>{entry.data.publishedDate.toLocaleDateString('en-AU', { dateStyle: 'medium' })}</span></div></a>)}</div>
+    <div class="button-row"><a class="button button-outline" href="/insights/">Read all insights</a></div>
+  </section>
+  <CTASection />
+</BaseLayout>

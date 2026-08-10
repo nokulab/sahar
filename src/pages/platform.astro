@@ -1,0 +1,135 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import PageHero from '@/components/PageHero.astro';
+import Breadcrumbs from '@/components/Breadcrumbs.astro';
+import SectionNav from '@/components/SectionNav.astro';
+import FAQ from '@/components/FAQ.astro';
+import CTASection from '@/components/CTASection.astro';
+
+const sections = [
+  { id: 'portal', label: 'A portal is a place' }, { id: 'layers', label: 'Community layers' }, { id: 'communication', label: 'Communication' },
+  { id: 'knowledge', label: 'Knowledge' }, { id: 'participation', label: 'Participation' }, { id: 'administration', label: 'Administration' }, { id: 'privacy', label: 'Privacy' }, { id: 'implementation', label: 'Implementation' }
+];
+const faqs = [
+  { q: 'What is a community portal?', a: 'A community portal is a dedicated digital environment operated for a defined group of people. It brings together communication, information, participation and administration around a shared purpose.' },
+  { q: 'How is a community portal different from a social network?', a: 'A community portal has a defined operator, membership and purpose. Portal Page is intended to be paid for by organisations rather than funded through behavioural advertising or cross-site profiling.' },
+  { q: 'Who controls a Portal Page community?', a: 'The operating organisation should retain meaningful administrative control within the service agreement and configured responsibilities. Exact ownership, processing and access terms must be confirmed contractually.' },
+  { q: 'Can communities be private?', a: 'Privacy and defined membership are central design goals. The exact authentication, invitation and access model would be confirmed for each implementation.' },
+  { q: 'Can different users have different permissions?', a: 'Role-based permissions are part of the intended architecture. The final roles and their capabilities must be scoped and tested for the organisation.' },
+  { q: 'Can organisations export their information?', a: 'Portability is a Portal Page principle. Available export formats, scope and timing need to be specified in the implemented product and customer agreement rather than assumed from this website.' },
+  { q: 'How does Portal Page approach privacy?', a: 'Through data minimisation, purpose clarity, organisational control, transparent data practices and a business model that does not depend on behavioural advertising.' },
+  { q: 'Can Portal Page be used by government?', a: 'Portal Page is intended for public-purpose communities, subject to procurement, security, privacy, accessibility, information-management and other assessments required by the relevant agency.' }
+];
+---
+<BaseLayout title="Community portal platform" description="Explore Portal Page: privacy-first community portal software for communication, knowledge, participation and organisation-owned community infrastructure.">
+  <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Platform' }]} />
+  <PageHero eyebrow="The platform" title="A place for the whole community." intro="Portal Page is designed to give organisations and the people they serve one coherent digital environment for communication, knowledge, participation and practical support." tone="lime">
+    <div class="button-row"><a class="button" href="/contact/?path=build">Build a Portal</a><a class="text-link" href="/community-examples/">See illustrative communities →</a></div>
+  </PageHero>
+  <SectionNav items={sections} />
+
+  <section class="content-section" id="portal">
+    <h2>A portal is a place, not a feature list.</h2>
+    <div class="content-prose">
+      <p>A digital community portal is a dedicated environment for a defined group of people. It has an operator, a purpose, membership boundaries and an understandable relationship between official information and community participation.</p>
+      <p>That definition matters. Organisations do not suffer from a shortage of software features. They often have publishing tools, group chats, mailing systems, cloud drives, calendars and forms. What they lack is coherence. Members have to remember which channel carries which kind of information, whether a source is authoritative and where a conversation can safely continue.</p>
+      <p>Portal Page is intended to become the recognisable front door. Behind it, an organisation can arrange the rooms its community needs: an announcement space, a shared library, group discussions, events, member information and routes to support. Not every member needs the key to every room. Roles and permissions should reflect real responsibilities and the legitimate needs of each group.</p>
+      <p>The result should feel calmer than a social feed. Important information can have an enduring home. A discussion can remain connected to its context. The community does not need to compete with entertainment, advertising and unrelated algorithmic recommendations.</p>
+      <aside class="callout"><strong>One place does not mean one undifferentiated feed.</strong>A coherent portal gives each kind of activity an appropriate structure, while keeping the overall experience recognisable.</aside>
+      <p>Portal Page describes an intended product direction. Exact capabilities, service levels, integrations, hosting arrangements and contractual commitments must be verified during procurement and reflected in the implemented service.</p>
+    </div>
+  </section>
+
+  <section class="section-shell" id="layers">
+    <div class="section-heading"><p class="eyebrow">Community architecture</p><h2>Six layers make the whole understandable.</h2></div>
+    <div class="feature-rail">
+      <div class="feature-row"><span class="num">01</span><h3>Purpose</h3><p>Why the community exists, what belongs there and what remains outside its scope.</p></div>
+      <div class="feature-row"><span class="num">02</span><h3>Identity</h3><p>Who participates, how membership is established and what members can choose to reveal.</p></div>
+      <div class="feature-row"><span class="num">03</span><h3>Structure</h3><p>Spaces, groups, topics and pathways that match the way the real organisation works.</p></div>
+      <div class="feature-row"><span class="num">04</span><h3>Knowledge</h3><p>Announcements, documents, discussions and guidance that remain findable and current.</p></div>
+      <div class="feature-row"><span class="num">05</span><h3>Participation</h3><p>Ways to discuss, gather, ask, respond and contribute without manipulating attention.</p></div>
+      <div class="feature-row"><span class="num">06</span><h3>Governance</h3><p>Roles, permissions, standards, moderation and data practices that make accountability visible.</p></div>
+    </div>
+  </section>
+
+  <section class="content-section" id="communication">
+    <h2>Communication with a clear source.</h2>
+    <div class="content-prose">
+      <p>Community communication has several modes. An organisation may need to publish an authoritative notice. A working group may need to discuss a proposal. A member may need to ask a practical question. Treating all three as identical posts creates ambiguity.</p>
+      <h3>Announcements</h3>
+      <p>Announcements should identify the publisher, audience, date and required action. Their value comes from clarity and retrievability, not simply from sending another notification. Important notices may also need expiry, correction or archival arrangements.</p>
+      <h3>Discussions</h3>
+      <p>Discussion spaces should make the audience and community expectations visible. A bounded conversation can support practical exchange without broadcasting the topic to the open internet. Moderators need an accountable role, and members need an understandable route to report a concern.</p>
+      <h3>Notifications</h3>
+      <p>Notifications should help members remain informed without attempting to manufacture compulsion. Reasonable defaults, topic controls, digests and quiet choices can respect different relationships to the community. Critical communications should never rely on a single digital channel without an explicit operational decision.</p>
+      <p><a href="/platform/community-communication/">Explore community communication</a>, <a href="/platform/announcements/">announcements</a> and <a href="/platform/discussions/">discussions</a>.</p>
+    </div>
+  </section>
+
+  <section class="content-section" id="knowledge">
+    <h2>Knowledge that does not vanish into the stream.</h2>
+    <div class="content-prose">
+      <p>Communities create valuable practical knowledge: the answer to a recurring question, a guide to a process, a decision, a record of an event, a document that explains how something works. In channel-based communication, that knowledge becomes difficult to recover.</p>
+      <p>A community portal can give enduring information an appropriate home. Documents should carry context rather than appearing as unexplained filenames. Search results should distinguish a current guide from an old discussion. A useful answer in a conversation may need to become maintained guidance instead of remaining buried in a thread.</p>
+      <p>This requires editorial responsibility. Somebody must know which information is authoritative, when it should be reviewed and what happens to old versions. Technology can expose dates and ownership, but governance determines whether the content remains trustworthy.</p>
+      <h3>Search within boundaries</h3>
+      <p>Search must respect the same permissions as the content itself. A member should not discover restricted information through a title, snippet or index. Search behaviour should not become a source of advertising data. Query logging, if required for service improvement or security, should have a stated purpose and proportionate retention.</p>
+      <p><a href="/platform/documents/">Explore documents</a> and <a href="/platform/search/">community search</a>.</p>
+    </div>
+  </section>
+
+  <section class="content-section" id="participation">
+    <h2>Participation without an attention trap.</h2>
+    <div class="content-prose">
+      <p>Participation is valuable when it helps the community achieve its purpose. That may mean a resident finding a local event, a professional contributing experience, a volunteer receiving a useful update or an advisory group working through an issue.</p>
+      <p>Conventional consumer platforms often optimise for measures such as time spent, impressions and repeat visits. Those measures can reward outrage, interruption and endless consumption. Portal Page begins with a different question: what did the member come here to accomplish?</p>
+      <p>Events should explain how to participate. Discussions should preserve context and standards. Directories should reveal only the information needed for the intended kind of connection. Support pathways should identify who will respond. None of these choices guarantees a healthy community, but each can remove friction from responsible human stewardship.</p>
+      <p>The portal should also respect non-participation. Members should be able to understand and adjust notifications, leave optional groups, and know what happens to their account when their relationship with the organisation ends.</p>
+      <p><a href="/platform/events/">Explore events</a>, <a href="/platform/member-directory/">member directories</a> and <a href="/platform/community-support/">community support</a>.</p>
+    </div>
+  </section>
+
+  <section class="content-section" id="administration">
+    <h2>Administration that reflects real responsibility.</h2>
+    <div class="content-prose">
+      <p>Community administration is not a single superuser account. Different people may approve membership, publish announcements, moderate discussions, maintain documents, manage groups or respond to requests. Their access should reflect those responsibilities.</p>
+      <p>Least privilege reduces avoidable risk and makes accountability clearer. Organisations also need joiner, mover and leaver processes: access should change when a staff member changes role, a contractor finishes or a community member is no longer eligible.</p>
+      <h3>Moderation as a system</h3>
+      <p>Moderation requires published standards, capable people, escalation pathways and attention to procedural fairness. Automated assistance may help triage reports, but consequential decisions about people and context require human accountability. Portal Page's current public principle is that any AI capability involving private community information should have a clear purpose, controls and authorisation; private content should not automatically become model-training material.</p>
+      <h3>Integrations with a purpose</h3>
+      <p>An integration can reduce duplicate work, but it can also expand the data boundary. Each connection should have an owner, documented fields, an error path and an exit plan. Portal Page does not list integrations on this site because none have been established for public claim. Potential connections would be scoped with the customer.</p>
+      <p><a href="/platform/roles-and-permissions/">Explore roles and permissions</a>, <a href="/platform/moderation/">moderation</a> and <a href="/platform/integrations/">integration principles</a>.</p>
+    </div>
+  </section>
+
+  <section class="content-section" id="privacy">
+    <h2>Privacy is part of the architecture.</h2>
+    <div class="content-prose">
+      <p>Portal Page is built around a simple commercial and ethical position: community participation should not fund the service through behavioural advertising. The organisation pays for software; members should not pay through personal profiles assembled from their activity.</p>
+      <p>Privacy by design goes further than the absence of ads. It asks whether each data field is necessary, which role can access it, how long it is needed, where third-party processors are involved, how people can exercise choices and what happens at the end of the relationship.</p>
+      <p>Data minimisation reduces risk, but it also creates a clearer product. A registration form with fewer unexplained questions is easier to complete. A directory with deliberate visibility is easier to trust. A notification setting in plain language is easier to use.</p>
+      <p>Portability matters because organisational communities should not be deliberately trapped. Export alone is not enough: formats need context and agreements need to describe practical scope. Portal Page treats useful portability as a design principle whose exact implementation must be documented contractually.</p>
+      <aside class="callout"><strong>Private community content is not automatic training material.</strong>Any future AI use involving customer information should require a defined purpose, appropriate authorisation and meaningful controls.</aside>
+      <p>Read the <a href="/principles/">Portal Page principles</a>, our approach to <a href="/data-ownership/">data ownership</a> and <a href="/privacy-by-design/">privacy by design</a>.</p>
+    </div>
+  </section>
+
+  <section class="content-section" id="implementation">
+    <h2>The platform begins with discovery.</h2>
+    <div class="content-prose">
+      <p>A portal should be shaped by the community's purpose, not by default settings alone. Portal Page would begin by understanding the people involved, current channels, important information flows, operational owners and risks.</p>
+      <ol class="steps">
+        <li><div><strong>Define the community.</strong><br />Clarify purpose, members, boundaries, outcomes and what the portal will not do.</div></li>
+        <li><div><strong>Map the operating model.</strong><br />Identify administrators, publishers, moderators, support owners and accountable decision-makers.</div></li>
+        <li><div><strong>Design the information architecture.</strong><br />Arrange spaces, groups, content types, navigation and vocabulary around real member tasks.</div></li>
+        <li><div><strong>Resolve trust requirements.</strong><br />Assess privacy, security, accessibility, information management, moderation and legal needs.</div></li>
+        <li><div><strong>Plan migration and launch.</strong><br />Decide what moves, what is archived, how members are invited and how support will operate.</div></li>
+        <li><div><strong>Learn responsibly.</strong><br />Review whether the portal helps people accomplish useful tasks without turning participation into surveillance.</div></li>
+      </ol>
+      <p>Portal Page's public website explains intended principles and use cases. A proposal or implementation plan would need to confirm the actual service scope. Organisations with regulatory obligations should undertake their own appropriate assurance and obtain professional advice.</p>
+    </div>
+  </section>
+
+  <FAQ items={faqs} title="Before you build a portal" />
+  <CTASection title="Bring the whole community into view." text="Start with the people, information and responsibilities that need a better place to meet." />
+</BaseLayout>

@@ -1,0 +1,25 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import PageHero from '@/components/PageHero.astro';
+import Breadcrumbs from '@/components/Breadcrumbs.astro';
+import CTASection from '@/components/CTASection.astro';
+const solutions = [
+  ['Government', 'Defined public-purpose groups with clear governance, accessibility and information-management considerations.', '/solutions/government/'],
+  ['Local government', 'A stable digital place around council programs, projects, volunteers and local participation.', '/solutions/local-government/'],
+  ['Business', 'Customer, partner, project and internal communities with an accountable organisational owner.', '/solutions/business/'],
+  ['Property & strata', 'A private digital home for announcements, guidance and connection around a physical community.', '/solutions/property-and-strata/'],
+  ['Associations', 'Member knowledge, chapters, professional exchange and events in an organisation-owned environment.', '/solutions/associations/'],
+  ['Not-for-profits', 'Coordinate volunteers, members and program communities without monetising their attention.', '/solutions/not-for-profits/'],
+  ['Education', 'Bounded institutional, cohort, alumni and professional learning communities.', '/solutions/education/'],
+  ['Employee communities', 'Support professional connection while respecting the boundary between participation and monitoring.', '/solutions/employee-communities/'],
+  ['Stakeholder engagement', 'An ongoing space for advisory, working, project and program groups.', '/solutions/stakeholder-engagement/']
+];
+---
+<BaseLayout title="Community portal solutions" description="Explore privacy-first Portal Page solutions for government, business, property, associations, education, not-for-profits and stakeholder communities.">
+  <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Solutions' }]} />
+  <PageHero eyebrow="Solutions" title="Every community has its own shape." intro="Portal Page begins with purpose, people and responsibility—then designs a private digital place around the way that community actually works." tone="paper" />
+  <section class="content-section"><h2>Shared infrastructure. Different operating models.</h2><div class="content-prose"><p>A regional council reference group is not a residential building. A professional association is not an employee network. They may all need communication, documents, discussion and events, but the meaning of membership, authority, privacy and record-keeping changes with the context.</p><p>Portal Page is designed as a configurable community foundation rather than a promise that one default suits everybody. Discovery should identify the community purpose, member groups, important information, accountable owners and obligations before product scope is confirmed.</p><p>The solution pages describe realistic ways organisations could use Portal Page. They do not claim existing customers, deployments or sector certifications.</p></div></section>
+  <section class="section-shell"><div class="section-heading"><p class="eyebrow">Explore by community</p><h2>Start where your people are.</h2></div><div class="card-grid">{solutions.map(([title, text, href]) => <a class="card" href={href}><p class="eyebrow">Solution</p><h2>{title}</h2><p>{text}</p></a>)}</div></section>
+  <section class="content-section"><h2>Four questions before features.</h2><div class="content-prose"><ol class="steps"><li><div><strong>Who belongs?</strong><br />Define membership, invitations, changes and departure.</div></li><li><div><strong>What is the shared purpose?</strong><br />State what the portal helps people do and what remains outside it.</div></li><li><div><strong>Who is responsible?</strong><br />Name the operators, publishers, moderators and support owners.</div></li><li><div><strong>What trust is required?</strong><br />Assess privacy, security, accessibility, information management and relevant legal obligations.</div></li></ol></div></section>
+  <CTASection title="Design for the community you actually have." text="Tell us how your people communicate today, what gets lost and which boundaries matter." />
+</BaseLayout>

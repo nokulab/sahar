@@ -1,0 +1,96 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import PageHero from '@/components/PageHero.astro';
+import Breadcrumbs from '@/components/Breadcrumbs.astro';
+import SectionNav from '@/components/SectionNav.astro';
+import CTASection from '@/components/CTASection.astro';
+
+const sections = [
+  { id: 'meaning', label: 'What data means' }, { id: 'roles', label: 'Roles and responsibility' }, { id: 'control', label: 'Meaningful control' },
+  { id: 'lifecycle', label: 'Data lifecycle' }, { id: 'advertising', label: 'Advertising and analytics' }, { id: 'ai', label: 'AI' }, { id: 'processors', label: 'Processors' }, { id: 'agreement', label: 'From principle to contract' }
+];
+---
+<BaseLayout title="Data ownership" description="Understand Portal Page's approach to community data ownership, stewardship, portability, deletion, advertising, analytics, AI and organisational control.">
+  <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Data ownership' }]} />
+  <PageHero eyebrow="Data ownership" title="We want to experience a digital community, not surveillance." intro="Community information should remain under the meaningful control of the people and organisations that create it. That principle needs practical design, honest language and binding documentation." tone="ink" />
+  <SectionNav items={sections} />
+  <section class="content-section" id="meaning">
+    <h2>Start by naming the information.</h2>
+    <div class="content-prose">
+      <p>“Your data” sounds simple until a community begins to operate. A portal may contain personal information about a member, content contributed by that member, records created by administrators, technical information needed to run the service and collective knowledge developed through discussion.</p>
+      <h3>User data</h3>
+      <p>User data can include the information that identifies or describes an individual: name, contact details, membership status, preferences, role, group relationships and support interactions. The appropriate fields depend on the community purpose. Portal Page's principle is to collect only what the service and organisation genuinely need, rather than treating every possible profile attribute as useful by default.</p>
+      <h3>Community data</h3>
+      <p>Community data is broader. It can include announcements, discussions, documents, events, group structures, moderation decisions and the relationships that give information its context. Some of it may also be personal information. Some may belong to, or be controlled by, different parties under contract or law.</p>
+      <h3>Operational data</h3>
+      <p>A digital service may need limited logs and technical records for security, reliability, troubleshooting and support. Calling a platform privacy-first does not mean pretending this information does not exist. It means defining a purpose, restricting access, setting proportionate retention and refusing to repurpose operational data into an advertising profile.</p>
+      <aside class="callout"><strong>“Ownership” is shorthand, not a complete legal analysis.</strong>Legal rights can vary by information type, agreement and jurisdiction. Portal Page's actual contracts and privacy documentation must define the parties' rights and responsibilities precisely.</aside>
+    </div>
+  </section>
+  <section class="content-section" id="roles">
+    <h2>Provider, operator and member are different roles.</h2>
+    <div class="content-prose">
+      <p>Portal Page intends to provide the software and process information to deliver the agreed service. The organisation establishes and operates its community. Members contribute information and participate within that environment. Those roles overlap, but they are not interchangeable.</p>
+      <p>The organisation should determine legitimate community purposes, membership rules, administrative access and retention expectations. It should communicate those choices to members and ensure it has an appropriate basis for handling information. Portal Page should act on documented customer instructions where the contractual and privacy framework requires it, protect the service and remain transparent about its own processing.</p>
+      <p>Members are not merely rows in a customer database. They need understandable information about the operator, the audience for their contributions and the choices available to them. They also remain responsible for what they choose to contribute and for following community standards.</p>
+      <p>Some situations are more complex. An integration may introduce another processor. A legally required record may constrain deletion. A shared community may involve more than one accountable organisation. Those cases need explicit analysis rather than a generic ownership slogan.</p>
+    </div>
+  </section>
+  <section class="content-section" id="control">
+    <h2>Control should be usable.</h2>
+    <div class="content-prose">
+      <p>Meaningful control is not a sentence in a policy. It appears through day-to-day capability and governance. Administrators need appropriate access to manage membership, structure information and respond to community issues. Members need visibility choices that match the purpose and understandable ways to ask questions or exercise applicable rights.</p>
+      <p>Control also requires restraint. The fact that an administrator can access information does not mean every administrator should. Roles should follow least privilege. Sensitive actions should be deliberate. Organisational policies should explain who is authorised to do what.</p>
+      <h3>Portability and export</h3>
+      <p>A community should not be trapped by design. Portal Page's intended direction includes useful export and migration planning. To be meaningful, export scope and formats need to preserve relevant context: relationships between content, authorship, dates, group structure and permissions may matter as much as the text itself.</p>
+      <p>Portability is not permission to redistribute everything. Member privacy, third-party rights, legal restrictions and the organisation's own obligations may affect what can be exported and how it can be used. The product and agreement must resolve these questions in advance.</p>
+    </div>
+  </section>
+  <section class="content-section" id="lifecycle">
+    <h2>Plan the whole data lifecycle.</h2>
+    <div class="content-prose">
+      <h3>Collection</h3><p>Ask only for information connected to a clear purpose. Explain optional fields. Avoid creating detailed profiles simply because the interface has room for them.</p>
+      <h3>Use and access</h3><p>Use community information for the purpose members were given. Restrict access through roles, operational controls and accountable policies. A new use should trigger a fresh assessment rather than inheriting permission automatically.</p>
+      <h3>Retention</h3><p>Some information has a short operational life; other information forms legitimate community history or a required record. Retention should reflect purpose, legal needs and community expectations. Indefinite retention should not be the invisible default.</p>
+      <h3>Correction and quality</h3><p>Out-of-date identity and membership information can create access risk and practical harm. Organisations need processes to correct information and review eligibility. Community content may require a distinct correction approach that preserves legitimate context.</p>
+      <h3>Deletion and departure</h3><p>When a member leaves, the service should support an understandable account lifecycle. The correct treatment of contributions may vary: deleting identity, anonymising content, retaining a necessary record or removing material can have different consequences. Those rules need to be stated before departure.</p>
+      <h3>Service exit</h3><p>The customer agreement should set out export, transition and deletion arrangements for the end of the service. Backups and security records may have separate, limited retention cycles that should also be described.</p>
+    </div>
+  </section>
+  <section class="content-section" id="advertising">
+    <h2>No advertising profile hiding behind community participation.</h2>
+    <div class="content-prose">
+      <p>Portal Page should not sell personal information, operate a behavioural advertising marketplace or build cross-site advertising profiles from private community activity. An organisation should buy the software directly; the members should not unknowingly subsidise it through surveillance.</p>
+      <p>This website itself launches without advertising pixels, session replay or behavioural analytics. It does not need a consent banner because it does not intentionally set non-essential cookies in the default static build. If the owner later adds analytics, embedded media or a form provider, the privacy and cookie notices must be reassessed before launch.</p>
+      <h3>Proportionate analytics</h3>
+      <p>Analytics can answer legitimate questions: whether people find important guidance, where an interface fails or whether performance is acceptable. The principle is to begin with the decision that needs evidence, then collect the least detailed information that can support it. Aggregate measures or privacy-preserving approaches may be sufficient.</p>
+      <p>More data is not automatically better product insight. Detailed behavioural trails create obligations and can distort community priorities towards whatever is easiest to count.</p>
+    </div>
+  </section>
+  <section class="content-section" id="ai">
+    <h2>Private content is not automatic training material.</h2>
+    <div class="content-prose">
+      <p>Portal Page's public position is that private community content should not be used automatically to train artificial intelligence models. People who contribute to a community for a defined purpose should not discover that their words have been diverted into a materially different use.</p>
+      <p>Portal Page only provides AI capabilities for community moderation. The exact functionality, providers, data flows, retention and human oversight must be documented before any deployment. Automated assistance should not remove administrator accountability for consequential decisions about people.</p>
+      <p>Any future AI capability involving private customer information should start with a clear purpose and appropriate authorisation. It should evaluate whether less data can achieve the result, provide meaningful controls, document third-party processing and consider error, bias, explainability and appeal. A fashionable feature is not, by itself, a legitimate purpose.</p>
+    </div>
+  </section>
+  <section class="content-section" id="processors">
+    <h2>Third parties expand the boundary.</h2>
+    <div class="content-prose">
+      <p>Modern services rely on infrastructure and specialist suppliers. Each processor can affect where information moves, which people can access it and what happens when a supplier changes. A privacy-first approach does not conceal this dependency; it manages and explains it.</p>
+      <p>Portal Page should maintain an accurate view of processors, assess them in proportion to risk, contract for appropriate obligations and provide customers with relevant transparency. Integrations requested by a customer need the same discipline.</p>
+      <p>This public website does not list processors because a verified production list has not been supplied. A current processor schedule should be completed before customer launch and linked from the final privacy documentation.</p>
+    </div>
+  </section>
+  <section class="content-section" id="agreement">
+    <h2>Turn the principle into a commitment.</h2>
+    <div class="content-prose">
+      <p>Marketing cannot determine legal ownership or data-processing roles. Portal Page's final customer agreement, data-processing terms, privacy notice, product documentation and implemented controls must align.</p>
+      <p>Before launch, those materials should address categories and purposes of processing, party roles, administrator access, member rights pathways, subprocessors, international data handling where applicable, security obligations, incident processes, retention, deletion, exports, service exit and the treatment of artificial intelligence.</p>
+      <p>Customers should review the terms against their own obligations and community context. Government, education, employment, property and other sectors may bring additional requirements. This page explains Portal Page's intended philosophy; it is not legal advice and does not replace professional review.</p>
+      <aside class="callout"><strong>The standard is alignment.</strong>What Portal Page says, what the product does and what the contract promises should tell the same story.</aside>
+    </div>
+  </section>
+  <CTASection title="Own the relationship with your community." text="Build a digital place whose commercial model and data practices can be explained without euphemism." />
+</BaseLayout>

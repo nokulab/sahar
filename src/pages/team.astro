@@ -1,0 +1,11 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro'; import PageHero from '@/components/PageHero.astro'; import Breadcrumbs from '@/components/Breadcrumbs.astro'; import CTASection from '@/components/CTASection.astro';
+import team from '@/data/team';
+---
+<BaseLayout title="Team" description="Meet the people building Portal Page. Team profiles will be published here when verified details are supplied.">
+  <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'About', href: '/about/' }, { label: 'Team' }]} />
+  <PageHero eyebrow="Team" title="Built by people who believe communities deserve better tools." intro="This page is ready for real team profiles. We have not invented names, roles or biographies while verified company information is unavailable." tone="paper" />
+  <section class="section-shell">
+    {team.length ? <div class="team-grid">{team.map((person) => <article class="team-card"><h2>{person.name}</h2><p>{person.role}</p><p>{person.bio}</p></article>)}</div> : <div class="empty-state"><div><p class="eyebrow">Profiles coming when supplied</p><h2>No fictional team.</h2><p>Verified names, roles, biographies, portraits and profile links can be managed from one data file.</p></div></div>}
+  </section><CTASection title="Interested in building this with us?" text="Learn about the kind of company Portal Page intends to become." />
+</BaseLayout>

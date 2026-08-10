@@ -1,0 +1,20 @@
+---
+import Logo from './Logo.astro';
+import { nav, site } from '@/data/site';
+---
+<footer class="site-footer">
+  <div class="footer-lead">
+    <Logo />
+    <p>Your community.<br />Your platform.<br />Your data.</p>
+  </div>
+  <div class="footer-grid">
+    {nav.map((group) => (
+      <section><h2>{group.label}</h2>{group.links.map(([label, href]) => <a href={href}>{label}</a>)}</section>
+    ))}
+    <section><h2>Legal</h2><a href="/privacy/">Privacy</a><a href="/terms/">Terms</a><a href="/acceptable-use/">Acceptable use</a><a href="/cookies/">Cookies</a></section>
+  </div>
+  <div class="footer-base">
+    <p>© {new Date().getFullYear()} {site.name}. Built for communities, not ad profiles.</p>
+    <p>Australia · <a href="/contact/">Contact Portal Page</a></p>
+  </div>
+</footer>
