@@ -1,4 +1,4 @@
-name: Deploy Portal Page to GitHub Pages
+name: Deploy site
 
 on:
   push:
