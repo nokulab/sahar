@@ -5,14 +5,14 @@ import BaseLayout from '@/layouts/BaseLayout.astro'; import PageHero from '@/com
   <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Contact' }]} />
   <PageHero eyebrow="Contact" title="Tell us about the community." intro="Who needs a better place to communicate? What is scattered today? Which responsibilities and boundaries matter most?" tone="lime" />
   <section class="contact-layout">
-    <aside><p class="eyebrow">Choose a pathway</p><div class="contact-paths"><a href="?path=build#contact-form" data-contact-path="build">Build a Portal ↘</a><a href="?path=government#contact-form" data-contact-path="government">Government ↘</a><a href="?path=partnerships#contact-form" data-contact-path="partnerships">Partnerships ↘</a><a href="?path=general#contact-form" data-contact-path="general">General enquiries ↘</a></div>{site.email ? <p>Prefer email?<br /><a href={`mailto:${site.email}`}>{site.email}</a></p> : <p class="form-note">A public contact email has not yet been configured.</p>}</aside>
+    <aside><p class="eyebrow">Choose a pathway</p><div class="contact-paths"><a href="?path=build#contact-form" data-contact-path="build">Build a Portal ↘</a><a href="?path=support#contact-form" data-contact-path="support">Support ↘</a><a href="?path=partnerships#contact-form" data-contact-path="partnerships">Partnerships ↘</a><a href="?path=general#contact-form" data-contact-path="general">General enquiries ↘</a></div>{site.email ? <p>Prefer email?<br /><a href={`mailto:${site.email}`}>{site.email}</a></p> : <p class="form-note">A public contact email has not yet been configured.</p>}</aside>
     <div>
       {!site.email && <div class="legal-notice" style="margin-bottom:2rem">The enquiry email address has not been configured yet. You can still create a draft, then add the recipient in your email app.</div>}
       <form class="contact-form" id="contact-form" data-recipient={site.email}>
         <div class="field"><label for="name">Name</label><input id="name" name="name" autocomplete="name" required /></div>
         <div class="field"><label for="email">Work email</label><input id="email" name="email" type="email" autocomplete="email" required /></div>
         <div class="field"><label for="organisation">Organisation</label><input id="organisation" name="organisation" autocomplete="organization" /></div>
-        <div class="field"><label for="path">What would you like to discuss?</label><select id="path" name="path" required><option value="">Select one</option><option value="build">Build a Portal</option><option value="government">Government</option><option value="partnerships">Partnerships</option><option value="general">General enquiry</option></select></div>
+        <div class="field"><label for="path">What would you like to discuss?</label><select id="path" name="path" required><option value="">Select one</option><option value="build">Build a Portal</option><option value="support">Support</option><option value="partnerships">Partnerships</option><option value="general">General enquiry</option></select></div>
         <div class="field"><label for="message">Tell us about the community</label><textarea id="message" name="message" maxlength="2000" required></textarea></div>
         <label style="display:flex;align-items:start;gap:.6rem"><input type="checkbox" name="privacy_acknowledgement" required style="margin-top:.35rem" /> <span>I understand this creates a draft in my email app. Nothing is sent until I review the draft and press Send. Read the <a href="/privacy/">draft privacy notice</a>.</span></label>
         <button class="button" type="submit">Create email draft</button>
@@ -26,10 +26,11 @@ import BaseLayout from '@/layouts/BaseLayout.astro'; import PageHero from '@/com
     const form = document.querySelector<HTMLFormElement>('#contact-form');
     const pathSelect = document.querySelector<HTMLSelectElement>('#path');
     const status = document.querySelector<HTMLElement>('#email-draft-status');
-    const allowedPaths = new Set(['build', 'government', 'partnerships', 'general']);
+    const allowedPaths = new Set(['build', 'support', 'partnerships', 'general']);
 
     const selectPath = (path: string | null) => {
-      if (pathSelect && path && allowedPaths.has(path)) pathSelect.value = path;
+      const normalizedPath = path === 'government' ? 'support' : path;
+      if (pathSelect && normalizedPath && allowedPaths.has(normalizedPath)) pathSelect.value = normalizedPath;
     };
 
     selectPath(new URLSearchParams(window.location.search).get('path'));
@@ -49,7 +50,7 @@ import BaseLayout from '@/layouts/BaseLayout.astro'; import PageHero from '@/com
       const data = new FormData(form);
       const pathLabel = pathSelect?.selectedOptions[0]?.textContent?.trim() || 'General enquiry';
       const organisation = String(data.get('organisation') || '').trim();
-      const subject = `Portal Page enquiry — ${pathLabel}${organisation ? ` — ${organisation}` : ''}`;
+      const subject = pathLabel;
       const source = new URL(window.location.href);
       source.hash = '';
       source.search = '';

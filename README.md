@@ -49,11 +49,11 @@ Set these values through `.env` locally and GitHub repository **Settings → Sec
 | --- | --- | --- |
 | `PUBLIC_SITE_URL` | Yes | Final absolute origin, such as `https://portalpage.com.au` or `https://OWNER.github.io` |
 | `PUBLIC_BASE_PATH` | Yes | `/` for a custom domain or user Pages site; `/repository-name` for a project Pages site |
-| `PUBLIC_CONTACT_EMAIL` | Recommended | Verified public enquiry email used to address contact drafts automatically |
+| `PUBLIC_CONTACT_EMAIL` | Optional | Overrides the default `hello@portal.page` address used for contact drafts |
 | `PUBLIC_LINKEDIN_URL` | Optional | Verified company profile |
 | `PUBLIC_GITHUB_URL` | Optional | Verified public organisation profile |
 
-The contact page does not submit data to a form provider. It turns the visitor’s entries into a prefilled draft in their email application; nothing is sent until they review the draft and press Send. If `PUBLIC_CONTACT_EMAIL` is blank, the draft opens without a recipient and the visitor must add one.
+The contact page does not submit data to a form provider. It turns the visitor’s entries into a prefilled draft addressed to `hello@portal.page`; nothing is sent until they review the draft and press Send. Set `PUBLIC_CONTACT_EMAIL` only if the recipient needs to be changed.
 
 Corporate facts such as company address, team profiles and approved communities are deliberately empty. Update:
 
