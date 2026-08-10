@@ -51,9 +51,6 @@ import BaseLayout from '@/layouts/BaseLayout.astro'; import PageHero from '@/com
       const pathLabel = pathSelect?.selectedOptions[0]?.textContent?.trim() || 'General enquiry';
       const organisation = String(data.get('organisation') || '').trim();
       const subject = pathLabel;
-      const source = new URL(window.location.href);
-      source.hash = '';
-      source.search = '';
       const body = [
         'Portal Page enquiry',
         '',
@@ -63,9 +60,7 @@ import BaseLayout from '@/layouts/BaseLayout.astro'; import PageHero from '@/com
         `Enquiry type: ${pathLabel}`,
         '',
         'Community details:',
-        String(data.get('message') || '').trim(),
-        '',
-        `Created from: ${source.toString()}`
+        String(data.get('message') || '').trim()
       ].join('\n');
       const recipient = form.dataset.recipient?.trim() || '';
       const mailto = `mailto:${encodeURIComponent(recipient)}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
